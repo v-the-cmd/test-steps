@@ -1,4 +1,4 @@
-name: "Deploy YouTrack workflows"
+name: "Deploy YouTrack workflows - test"
 author: "Vasily Litvinov"
 description: "Run deployments for all workflows"
 inputs:
