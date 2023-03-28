@@ -1,0 +1,17 @@
+name: "Deploy YouTrack workflows"
+author: "Vasily Litvinov"
+description: "Run deployments for all workflows"
+
+
+runs:
+  using: "composite"
+  steps:
+    - run: npm ci
+
+    - name: Deploy
+      env:
+        TOKEN_TEST: ${{ secrets.YOUTRACK_TOKEN_TEST }}
+        TOKEN_PROD: ${{ secrets.YOUTRACK_TOKEN_PROD }}
+      run: |
+        npm config set token_test "$TOKEN_TEST"
+        npm config set token_prod "$TOKEN_PROD"
