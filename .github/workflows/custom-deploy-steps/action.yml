@@ -6,8 +6,6 @@ description: "Run deployments for all workflows"
 runs:
   using: "composite"
   steps:
-    - run: npm ci
-
     - name: Deploy
       env:
         TOKEN_TEST: ${{ secrets.YOUTRACK_TOKEN_TEST }}
