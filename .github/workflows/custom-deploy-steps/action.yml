@@ -7,6 +7,7 @@ runs:
   using: "composite"
   steps:
     - name: Deploy
+      shell: bash
       env:
         TOKEN_TEST: ${{ secrets.YOUTRACK_TOKEN_TEST }}
         TOKEN_PROD: ${{ secrets.YOUTRACK_TOKEN_PROD }}
