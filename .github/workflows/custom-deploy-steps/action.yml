@@ -1,4 +1,4 @@
-name: "Deploy YouTrack workflows - test"
+name: "Deploy YouTrack workflows"
 author: "Vasily Litvinov"
 description: "Run deployments for all workflows"
 inputs:
@@ -12,8 +12,8 @@ runs:
     - name: Deploy
       shell: bash
       env:
-        TOKEN_TEST: ${{ inputs.secrets.YOUTRACK_TOKEN_TEST }}
-        TOKEN_PROD: ${{ inputs.secrets.YOUTRACK_TOKEN_PROD }}
+        TOKEN_TEST: ${{ fromJSON(inputs.secrets).YOUTRACK_TOKEN_TEST }}
+        TOKEN_PROD: ${{ fromJSON(inputs.secrets).YOUTRACK_TOKEN_PROD }}
       run: |
         echo npm config set token_test "$TOKEN_TEST"
         echo npm config set token_prod "$TOKEN_PROD"
