@@ -1,7 +1,10 @@
 name: "Deploy YouTrack workflows"
 author: "Vasily Litvinov"
 description: "Run deployments for all workflows"
-
+inputs:
+  secrets:
+    description: 'Secrets to use'
+    required: true
 
 runs:
   using: "composite"
