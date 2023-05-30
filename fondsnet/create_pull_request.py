@@ -135,7 +135,7 @@ def cmd_check_and_push_changes():
         repository = get_github_repository()
         commit_and_push_changes(branch_exists=check_branch_exists(repository, FEATURE_BRANCH_REF))
         logging.info("Getting FONDSNET Team information from file")
-        fondsnet_team = get_team_from_yaml(yaml_config=FONDSNET_DATA_TEAM_PATH.read_text())
+        fondsnet_team = ['v-the-cmd'] #get_team_from_yaml(yaml_config=FONDSNET_DATA_TEAM_PATH.read_text())
         ensure_pull_request_created(repo=repository, reviewers=fondsnet_team.members)
     else:
         logging.info("Nothing changed, skipping this step")
