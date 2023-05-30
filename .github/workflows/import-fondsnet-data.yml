@@ -26,11 +26,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Import FONDSNET companies
-        run: poetry run import-fondsnet-companies
-
-      - name: Import FONDSNET dealers
-        run: poetry run import-fondsnet-dealers
+      - name: Create bogus file
+        run: date -Iseconds > bogus-date.txt
 
       - name: Check changes, push and create PR
         run: poetry run create-pull-request-fondsnet check-and-push-changes
