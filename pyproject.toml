@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "moneymeets_tenants"
+name = "test_steps"
 version = "0.1.0"
 description = ""
 authors = ["moneymeets <admin@moneymeets.com>"]
