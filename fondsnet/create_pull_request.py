@@ -90,7 +90,7 @@ def check_branch_exists(repo: Repository, branch: str) -> bool:
 
 def ensure_pull_request_created(repo: Repository, reviewers: Sequence[str]):
     logging.info("Checking for pull requests")
-    pr = repo.get_pulls(state="open", head=f"{repo.organization.login}:{FEATURE_BRANCH_REF}")
+    pr = repo.get_pulls(state="open", head=f"{getattr(repo.organization, 'login', 'v-the-cmd')}:{FEATURE_BRANCH_REF}")
 
     if pr.totalCount == 0:
         pull_request = repo.create_pull(
