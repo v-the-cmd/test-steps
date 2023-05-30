@@ -6,7 +6,8 @@ jobs:
   import-fondsnet-data:
     runs-on: ubuntu-22.04
     permissions:
-      pull-requests: write
+      contents: write # to allow creation of separate branch and push to it
+      pull-requests: write # to allow creation of PRs
     timeout-minutes: 15
     env:
       FONDSNET_SDK_ENVIRONMENT: LIVE
