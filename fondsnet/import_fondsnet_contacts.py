@@ -17,11 +17,11 @@ import yaml
 from dataclasses_json import dataclass_json
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
-from moneymeets.utils.collection import NonSingleValueError, get_single_value
-from moneymeets.utils.s3_document import S3Document
+#from moneymeets.utils.collection import NonSingleValueError, get_single_value
+#from moneymeets.utils.s3_document import S3Document
 
-from moneymeets_tenants.definitions import FondsnetTransactionType
-from moneymeets_tenants.utils import group_by
+#from moneymeets_tenants.definitions import FondsnetTransactionType
+#from moneymeets_tenants.utils import group_by
 
 ROOT_DIR = Path(__file__).parent.parent
 FONDSNET_CONTACTS_OUTPUT_FIXTURE_PATH = Path("moneymeets_tenants/data/fixtures/fondsnet-contacts.yaml")

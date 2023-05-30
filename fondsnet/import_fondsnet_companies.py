@@ -5,20 +5,21 @@ from pathlib import Path
 from typing import Sequence
 
 import yaml
-from fondsnet_sdk.api.schema.client.api.company import CompanyApi
-from fondsnet_sdk.api.schema.models.company.list.company import Company
-from fondsnet_sdk.logging_client import get_client
-from fondsnet_sdk.utils.companies import get_fondsnet_companies
-from spec2api.runtime.client.api_client import ApiClient
+#from fondsnet_sdk.api.schema.client.api.company import CompanyApi
+#from fondsnet_sdk.api.schema.models.company.list.company import Company
+#from fondsnet_sdk.logging_client import get_client
+#from fondsnet_sdk.utils.companies import get_fondsnet_companies
+#from spec2api.runtime.client.api_client import ApiClient
 
 FONDSNET_COMPANY_OUTPUT_FIXTURE_PATH = Path("moneymeets_tenants/data/fixtures/fondsnet-company.yaml")
 
 
-def get_companies(fondsnet_sdk_settings: dict) -> Sequence[Company]:
-    return get_fondsnet_companies(CompanyApi(ApiClient(get_client(fondsnet_sdk_settings, getLogger(__file__)))))
+def get_companies(fondsnet_sdk_settings: dict):# -> Sequence[Company]:
+    return ()
+#    return get_fondsnet_companies(CompanyApi(ApiClient(get_client(fondsnet_sdk_settings, getLogger(__file__)))))
 
 
-def write_fixture(companies: Sequence[Company]):
+def write_fixture(companies):#: Sequence[Company]):
     content = yaml.safe_dump(
         tuple(
             {

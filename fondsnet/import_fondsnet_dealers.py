@@ -6,22 +6,22 @@ from pathlib import Path
 from typing import Sequence
 
 import yaml
-from fondsnet_sdk.api.schema.client.api.search import SearchApi
-from fondsnet_sdk.api.schema.models.search.result_item import ResultItem
-from fondsnet_sdk.logging_client import get_client
-from fondsnet_sdk.utils.dealers import get_fondsnet_dealers
-from spec2api.runtime.client.api_client import ApiClient
+#from fondsnet_sdk.api.schema.client.api.search import SearchApi
+#from fondsnet_sdk.api.schema.models.search.result_item import ResultItem
+#from fondsnet_sdk.logging_client import get_client
+#from fondsnet_sdk.utils.dealers import get_fondsnet_dealers
+#from spec2api.runtime.client.api_client import ApiClient
 
 FONDSNET_DEALER_OUTPUT_FIXTURE_PATH = Path("moneymeets_tenants/data/fixtures/fondsnet-dealer.yaml")
 
 DEALER_BLACKLIST = (("Max", "Mustervermittler"),)
 
 
-def get_dealers(fondsnet_sdk_settings: dict) -> Sequence[ResultItem]:
+def get_dealers(fondsnet_sdk_settings: dict):# -> Sequence[ResultItem]:
     return get_fondsnet_dealers(SearchApi(ApiClient(get_client(fondsnet_sdk_settings, getLogger(__file__)))))
 
 
-def write_fixture(dealers: Sequence[ResultItem]):
+def write_fixture(dealers):#: Sequence[ResultItem]):
     dealers_yml = yaml.safe_dump(
         tuple(
             {
