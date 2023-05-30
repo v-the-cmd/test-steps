@@ -1,0 +1,38 @@
+name: Import FONDSNET data
+on:
+  workflow_dispatch:
+
+jobs:
+  import-fondsnet-data:
+    runs-on: ubuntu-22.04
+    permissions:
+      pull-requests: write
+    timeout-minutes: 15
+    env:
+      FONDSNET_SDK_ENVIRONMENT: LIVE
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          # https://docs.github.com/en/actions/reference/events-that-trigger-workflows#triggering-new-workflows-using-a-personal-access-token
+          #ssh-key: '${{ secrets.WORKFLOW_DEPLOY_KEY }}'
+
+      - name: Setup Python + Poetry
+        uses: moneymeets/action-setup-python-poetry@master
+
+      - name: Set up feature branch
+        run: poetry run create-pull-request-fondsnet set-up-branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Import FONDSNET companies
+        run: poetry run import-fondsnet-companies
+
+      - name: Import FONDSNET dealers
+        run: poetry run import-fondsnet-dealers
+
+      - name: Check changes, push and create PR
+        run: poetry run create-pull-request-fondsnet check-and-push-changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
