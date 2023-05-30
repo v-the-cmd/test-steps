@@ -1,0 +1,86 @@
+[tool.poetry]
+name = "moneymeets_tenants"
+version = "0.1.0"
+description = ""
+authors = ["moneymeets <admin@moneymeets.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+Django = ">=3.2,<4.0"
+
+awscli = ">=1.25.26"  # For the reasoning behind the minimum version see https://github.com/python-poetry/poetry/issues/5896
+boto3 = "*"
+click = "*"
+coverage = "*"
+cryptography = "*"
+dataclasses-json = "*"
+django_countries = "*"
+html2text = "*"
+Jinja2 = "*"
+jsonschema = "*"
+markdown = "*"
+#moneymeets-utils = { git = "ssh://git@github.com/moneymeets/python-moneymeets-utils.git", rev = "5e417dd6da6aa1b67903c6d486cac638188166c5" }
+#fondsnet-sdk = { git = "ssh://git@github.com/moneymeets/fondsnet-sdk.git", rev = "60cb55f9fa018ebdf6172e7c8889dc3207695ce4" }
+pypika = "*"
+PyYAML = "*"
+weasyprint = "*"
+requests = "*"
+openpyxl = "*"
+paramiko = "*"
+pydantic = "*"
+PySocks = "*"
+PyGithub = "*"
+
+[tool.poetry.dev-dependencies]
+add-trailing-comma = "*"
+black = "*"
+flake8 = "*"
+flake8-black = "*"
+flake8-coding = "*"
+flake8-isort = "*"
+flake8-quotes = "*"
+isort = {extras = ["pyproject"], version = "*"}
+
+pytest-django = "*"
+pytest-cov = "*"
+
+model_bakery = "*"
+
+[tool.poetry.scripts]
+import-fondsnet-companies = "fondsnet.import_fondsnet_companies:main"
+import-fondsnet-contacts = "fondsnet.import_fondsnet_contacts:main"
+import-fondsnet-dealers = "fondsnet.import_fondsnet_dealers:main"
+create-pull-request-fondsnet = "fondsnet.create_pull_request:main"
+
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings"
+filterwarnings = [
+    "ignore:No directory at.*staticfiles:UserWarning",
+]
+
+[tool.black]
+line-length = 120
+target-version = ["py311"]
+force-exclude = "/node_modules/"
+
+[tool.isort]
+profile = "black"
+line_length = 120
+filter_files = true
+
+[tool.coverage.run]
+branch = true
+source = ["."]
+omit = [
+    "*/migrations/*",
+    "*/tests/*.py",
+    "*/test_*.py",
+    "*/tests.py",
+    "manage.py"
+]
+
+[build-system]
+requires = ["poetry_core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
