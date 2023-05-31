@@ -1,0 +1,33 @@
+name: Deploy
+on: [ deployment ]
+concurrency:
+  group: deploy-${{ github.event.deployment.environment }}
+  cancel-in-progress: false
+
+jobs:
+  set-state-in-progress:
+    runs-on: ubuntu-20.04
+    permissions:
+      deployments: write
+    steps:
+      - uses: moneymeets/moneymeets-composite-actions/set-deployment-status@master
+        with:
+          environment: ${{ github.event.deployment.environment }}
+          state: in_progress
+
+
+  set-state-result:
+    runs-on: ubuntu-20.04
+    permissions:
+      deployments: write
+    if: always()
+    needs:
+      - set-state-in-progress
+    steps:
+      - id: set-result
+        run: echo "result=$(python3 -c "print('success' if '${{ join(needs.*.result, '') }}'.replace('success', '') == '' else 'failure')")" >> $GITHUB_OUTPUT
+
+      - uses: moneymeets/moneymeets-composite-actions/set-deployment-status@master
+        with:
+          environment: ${{ github.event.deployment.environment }}
+          state: ${{ steps.set-result.outputs.result }}
