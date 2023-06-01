@@ -13,6 +13,7 @@ jobs:
     permissions:
       deployments: write
     steps:
+      - uses: actions/checkout@v3
       - uses: moneymeets/moneymeets-composite-actions/set-deployment-status@master
         with:
           environment: ${{ github.event.deployment.environment }}
@@ -27,6 +28,7 @@ jobs:
     needs:
       - set-state-in-progress
     steps:
+      - uses: actions/checkout@v3
       - id: set-result
         run: echo "result=$(python3 -c "print('success' if '${{ join(needs.*.result, '') }}'.replace('success', '') == '' else 'failure')")" >> $GITHUB_OUTPUT
 
