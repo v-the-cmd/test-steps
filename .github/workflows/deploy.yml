@@ -11,6 +11,7 @@ jobs:
   set-state-in-progress:
     runs-on: ubuntu-20.04
     permissions:
+      contents: read
       deployments: write
     steps:
       - uses: actions/checkout@v3
